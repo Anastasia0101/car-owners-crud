@@ -9,7 +9,7 @@ import { Owner } from "../models/owner.model";
 export class ICarOwnersService {
   constructor(private http: HttpClient) {}
 
-  search(): Observable<Owner[]> {
+  getOwners(): Observable<Owner[]> {
     return this.http.get<Owner[]>('api/owners');
   }
 }

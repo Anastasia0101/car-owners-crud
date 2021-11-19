@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ICarOwnersService } from './services/car-owners.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,4 @@ import { ICarOwnersService } from './services/car-owners.service';
 })
 export class AppComponent {
 
-  constructor(private iCarOwnersService: ICarOwnersService) {}
-
-  ngOnInit(): void {
-    this.iCarOwnersService.search().subscribe((owners) => {
-      console.log(owners);
-    });
-  }
 }
