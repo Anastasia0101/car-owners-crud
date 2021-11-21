@@ -5,6 +5,6 @@ export interface Owner {
   name: string;
   surname: string;
   middleName: string;
-  numberOfCars: 0;
+  numberOfCars: number;
   cars: Car[];
 }

@@ -1,0 +1,8 @@
+.form {
+  margin-top: 20px;
+}
+
+.form__field {
+  margin: 10px;
+  width: 20%;
+}

@@ -1,5 +1,8 @@
-<table mat-table [dataSource]="owners" class="mat-elevation-z8 demo-table" *ngIf="owners">
+<div class="demo-button-container">
+  <a routerLink="/form">Add data</a>
+</div>
 
+<table mat-table [dataSource]="owners" class="mat-elevation-z8 demo-table" *ngIf="owners">
   <ng-container matColumnDef="surname">
     <th mat-header-cell *matHeaderCellDef>Прізвище</th>
     <td mat-cell *matCellDef="let element">{{element.surname}}</td>

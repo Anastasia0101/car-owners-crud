@@ -12,4 +12,12 @@ export class ICarOwnersService {
   getOwners(): Observable<Owner[]> {
     return this.http.get<Owner[]>('api/owners');
   }
+
+  getOwnerById(id: number): Observable<Owner> {
+    return this.http.get<Owner>(`api/owners/${id}`);
+  }
+
+  createOwner(owner: Owner): Observable<Owner> {
+    return this.http.post<Owner>('api/owners', owner);
+  }
 }

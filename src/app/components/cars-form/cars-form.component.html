@@ -1,0 +1,30 @@
+<form *ngIf="parentForm" [formGroup]="parentForm" (ngSubmit)="addCar()" class="form">
+  <ul formArrayName="cars">
+    <li [formGroupName]="i" *ngFor="let item of cars.controls; index as i">
+      <mat-form-field appearance="fill" class="form__field">
+        <mat-label>Номер</mat-label>
+        <input matInput formControlName="licensePlate">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form__field">
+        <mat-label>Марка</mat-label>
+        <input matInput formControlName="producer">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form__field">
+        <mat-label>Модель</mat-label>
+        <input matInput formControlName="model">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form__field">
+        <mat-label>Рік</mat-label>
+        <input matInput formControlName="yearOfProduction">
+      </mat-form-field>
+
+      <button mat-fab color="primary" (click)="deleteCar(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+  <button type="submit" [disabled]="!parentForm.valid">Add New Car</button>
+</form>

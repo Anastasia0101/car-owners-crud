@@ -1,0 +1,22 @@
+<form [formGroup]="ownerForm" (ngSubmit)="onFormSubmit()" class="form">
+  <mat-form-field appearance="fill" class="form__field">
+    <mat-label>Прізвище</mat-label>
+    <input matInput formControlName="surname">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form__field">
+    <mat-label>Ім'я</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form__field">
+    <mat-label>По батькові</mat-label>
+    <input matInput formControlName="middleName">
+  </mat-form-field>
+
+  <p class="form__subtitle">Автомобілі</p>
+
+  <app-cars-form [parentForm]="ownerForm" class="form__list"></app-cars-form>
+
+  <button mat-raised-button type="submit" [disabled]="!ownerForm.valid" color="primary" class="form__btn">Зберегти</button>
+</form>

@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.form__field {
+  width: 40%;
+}
+
+.form__subtitle {
+  margin: 20px;
+}
+
+.form__list {
+  margin: 20px;
+}
+
+.form__btn {
+  width: 40%;
+  margin-top: 30px;
+  padding: 5px;
+}
