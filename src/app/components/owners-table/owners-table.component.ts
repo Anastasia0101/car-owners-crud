@@ -11,6 +11,7 @@ export class OwnersTableComponent implements OnInit {
 
   displayedColumns: string[] = ['surname', 'name', 'middleName', 'numberOfCars'];
   owners!: Owner[];
+  selectedOwner?: Owner;
 
   constructor(
     private iCarOwnersService: ICarOwnersService
@@ -20,5 +21,15 @@ export class OwnersTableComponent implements OnInit {
     this.iCarOwnersService.getOwners().subscribe((owners: Owner[]) => {
       this.owners = owners;
     });
+  }
+
+  onSelectOwner(owner: Owner): void {
+    this.selectedOwner = owner;
+  }
+
+  deleteOwner(): void {
+    this.iCarOwnersService.deleteOwner(this.selectedOwner.id).subscribe((data) => {
+      this.owners = data;
+    })
   }
 }
