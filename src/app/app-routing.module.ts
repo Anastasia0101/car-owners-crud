@@ -5,7 +5,13 @@ import { OwnersTableComponent } from './components/owners-table/owners-table.com
 
 const routes: Routes = [
   { path: 'home', component: OwnersTableComponent },
-  { path: 'form', component: OwnerFormComponent },
+  {
+    path: 'form',
+    children: [
+      { path: '',  component: OwnerFormComponent },
+      { path: ':id', component: OwnerFormComponent }
+    ]
+  },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

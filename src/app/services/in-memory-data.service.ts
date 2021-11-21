@@ -24,7 +24,8 @@ export class InMemoryDataService implements InMemoryDbService {
           { licensePlate: 'BC7286AE', producer: 'KIA', model: 'Optima', yearOfProduction: 2019 }
         ]
       },
-      { id: 3,
+      {
+        id: 3,
         name: 'Олексій',
         surname: 'Антонов',
         middleName: 'Сергійович',

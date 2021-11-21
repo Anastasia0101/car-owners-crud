@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
+import { switchMap } from "rxjs/operators";
 import { Owner } from "../models/owner.model";
 
 @Injectable({
@@ -20,6 +20,13 @@ export class ICarOwnersService {
 
   createOwner(owner: Owner): Observable<Owner> {
     return this.http.post<Owner>('api/owners', owner);
+  }
+
+  editOwner(owner: Owner): Observable<Owner[]> {
+    const id = owner.id;
+    return this.http.put<Owner>(`api/owners?id=${id}`, owner).pipe(
+      switchMap(() => this.getOwners())
+    );
   }
 
   deleteOwner(aOwnerId: number): Observable<Owner[]> {

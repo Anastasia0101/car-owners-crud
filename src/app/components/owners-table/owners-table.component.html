@@ -1,6 +1,7 @@
 <div class="actions">
   <a routerLink="/form">Add data</a>
   <button (click)="deleteOwner()">Delete</button>
+  <a *ngIf="selectedOwner" [routerLink]="['/form', selectedOwner.id]">Update</a>
 </div>
 
 <table mat-table [dataSource]="owners" class="mat-elevation-z8 demo-table" *ngIf="owners">
@@ -28,7 +29,6 @@
   <tr
     mat-row
     (click)="onSelectOwner(row)"
-    [class.demo-row-is-clicked]="true"
     *matRowDef="let row; columns: displayedColumns;"
   ></tr>
 </table>
