@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { switchMap } from "rxjs/operators";
-import { Owner } from "../models/owner.model";
+import { OwnerEntity } from "../models/owner-entity.model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +10,27 @@ import { Owner } from "../models/owner.model";
 export class ICarOwnersService {
   constructor(private http: HttpClient) {}
 
-  getOwners(): Observable<Owner[]> {
-    return this.http.get<Owner[]>('api/owners');
+  getOwners(): Observable<OwnerEntity[]> {
+    return this.http.get<OwnerEntity[]>('api/owners');
   }
 
-  getOwnerById(id: number): Observable<Owner> {
-    return this.http.get<Owner>(`api/owners/${id}`);
+  getOwnerById(id: number): Observable<OwnerEntity> {
+    return this.http.get<OwnerEntity>(`api/owners/${id}`);
   }
 
-  createOwner(owner: Owner): Observable<Owner> {
-    return this.http.post<Owner>('api/owners', owner);
+  createOwner(owner: OwnerEntity): Observable<OwnerEntity> {
+    return this.http.post<OwnerEntity>('api/owners', owner);
   }
 
-  editOwner(owner: Owner): Observable<Owner[]> {
+  editOwner(owner: OwnerEntity): Observable<OwnerEntity[]> {
     const id = owner.id;
-    return this.http.put<Owner>(`api/owners?id=${id}`, owner).pipe(
+    return this.http.put<OwnerEntity>(`api/owners?id=${id}`, owner).pipe(
       switchMap(() => this.getOwners())
     );
   }
 
-  deleteOwner(aOwnerId: number): Observable<Owner[]> {
-    return this.http.delete<Owner[]>(`api/owners/${aOwnerId}`).pipe(
+  deleteOwner(aOwnerId: number): Observable<OwnerEntity[]> {
+    return this.http.delete<OwnerEntity[]>(`api/owners/${aOwnerId}`).pipe(
       switchMap(() => this.getOwners())
     );
   }

@@ -1,6 +1,38 @@
+.actions {
+  margin: 15px;
+  font-size: 16px;
+}
+
+.actions__link {
+  text-decoration: none;
+  color: #000000;
+  border: 2px solid grey;
+  margin-right: 15px;
+  padding: 5px 10px;
+}
+
+.btn {
+  font-size: 16px;
+  margin: 0;
+  background-color: #FFFFFF;
+}
+
+.actions__link:hover {
+ background-color: #727272;
+ transition: 0.2s;
+ border-radius: 3px;
+ cursor: pointer;
+ color: #FFFFFF;
+}
+
+
 .demo-table {
   width: 50%;
   margin: 0 auto;
+}
+
+.title {
+  text-align: center;
 }
 
 .mat-column-numberOfCars {

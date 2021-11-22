@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Owner } from 'src/app/models/owner.model';
+import { OwnerEntity } from 'src/app/models/owner-entity.model';
 import { ICarOwnersService } from 'src/app/services/car-owners.service';
 
 @Component({
@@ -10,26 +10,27 @@ import { ICarOwnersService } from 'src/app/services/car-owners.service';
 export class OwnersTableComponent implements OnInit {
 
   displayedColumns: string[] = ['surname', 'name', 'middleName', 'numberOfCars'];
-  owners!: Owner[];
-  selectedOwner?: Owner;
+  owners!: OwnerEntity[];
+  selectedOwner?: OwnerEntity;
 
   constructor(
     private iCarOwnersService: ICarOwnersService
   ) {}
 
   ngOnInit(): void {
-    this.iCarOwnersService.getOwners().subscribe((owners: Owner[]) => {
+    this.iCarOwnersService.getOwners().subscribe((owners: OwnerEntity[]) => {
       this.owners = owners;
     });
   }
 
-  onSelectOwner(owner: Owner): void {
+  onSelectOwner(owner: OwnerEntity): void {
     this.selectedOwner = owner;
   }
 
   deleteOwner(): void {
     this.iCarOwnersService.deleteOwner(this.selectedOwner.id).subscribe((data) => {
       this.owners = data;
-    })
+    });
+    this.selectedOwner = null;
   }
 }

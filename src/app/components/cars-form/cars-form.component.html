@@ -1,30 +1,33 @@
-<form *ngIf="parentForm" [formGroup]="parentForm" (ngSubmit)="addCar()" class="form">
+<div *ngIf="parentForm" [formGroup]="parentForm" class="form">
   <ul formArrayName="cars">
     <li [formGroupName]="i" *ngFor="let item of cars.controls; index as i">
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Номер</mat-label>
-        <input matInput formControlName="licensePlate">
+        <input matInput formControlName="licensePlate" (change)="checkNewCarValid(i)">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Марка</mat-label>
-        <input matInput formControlName="producer">
+        <input matInput formControlName="producer" (change)="checkNewCarValid(i)">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Модель</mat-label>
-        <input matInput formControlName="model">
+        <input matInput formControlName="model" (change)="checkNewCarValid(i)">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Рік</mat-label>
-        <input matInput formControlName="yearOfProduction">
+        <input matInput formControlName="yearOfProduction" (change)="checkNewCarValid(i)">
       </mat-form-field>
 
       <button mat-fab color="primary" (click)="deleteCar(i)">
         <mat-icon>delete</mat-icon>
       </button>
     </li>
+    <p *ngIf="!isLicensePlateUnique">Номер машини не унікальний</p>
   </ul>
-  <button type="submit" [disabled]="!parentForm.valid">Add New Car</button>
-</form>
+  <button type="button" mat-mini-fab color="accent" (click)="addCar()" [disabled]="!isCarGroupValid" class="btn">
+    <mat-icon>plus_one</mat-icon>
+  </button>
+</div>
