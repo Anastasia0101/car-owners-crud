@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'form',
     children: [
       { path: '',  component: OwnerFormComponent },
-      { path: ':id', component: OwnerFormComponent }
+      { path: ':id/:typeOfForm', component: OwnerFormComponent }
     ]
   },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }

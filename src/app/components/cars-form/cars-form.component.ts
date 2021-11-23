@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { OwnerEntity } from 'src/app/models/owner-entity.model';
 import { ICarOwnersService } from 'src/app/services/car-owners.service';
 
 @Component({
@@ -11,6 +10,7 @@ import { ICarOwnersService } from 'src/app/services/car-owners.service';
 export class CarsFormComponent {
 
   @Input() parentForm!: FormGroup;
+  @Input() isReadOnly!: boolean;
   isLicensePlateUnique = true;
   currentYear = new Date().getFullYear();
   lastCarIndex: number;

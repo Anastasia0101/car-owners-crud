@@ -3,31 +3,31 @@
     <li [formGroupName]="i" *ngFor="let item of cars.controls; index as i">
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Номер</mat-label>
-        <input matInput formControlName="licensePlate" (change)="checkNewCarValid(i)">
+        <input matInput formControlName="licensePlate" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Марка</mat-label>
-        <input matInput formControlName="producer" (change)="checkNewCarValid(i)">
+        <input matInput formControlName="producer" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Модель</mat-label>
-        <input matInput formControlName="model" (change)="checkNewCarValid(i)">
+        <input matInput formControlName="model" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Рік</mat-label>
-        <input matInput formControlName="yearOfProduction" (change)="checkNewCarValid(i)">
+        <input matInput formControlName="yearOfProduction" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
       </mat-form-field>
 
-      <button mat-fab color="primary" (click)="deleteCar(i)">
+      <button mat-fab color="primary" *ngIf="!isReadOnly" (click)="deleteCar(i)">
         <mat-icon>delete</mat-icon>
       </button>
     </li>
     <p *ngIf="!isLicensePlateUnique">Номер машини не унікальний</p>
   </ul>
-  <button type="button" mat-mini-fab color="accent" (click)="addCar()" [disabled]="!isCarGroupValid" class="btn">
+  <button type="button" *ngIf="!isReadOnly" mat-mini-fab color="accent" (click)="addCar()" [disabled]="!isCarGroupValid" class="btn">
     <mat-icon>plus_one</mat-icon>
   </button>
 </div>

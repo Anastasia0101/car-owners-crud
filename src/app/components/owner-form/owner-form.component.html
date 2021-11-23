@@ -1,22 +1,22 @@
 <form [formGroup]="ownerForm" (ngSubmit)="onFormSubmit()" class="form">
   <mat-form-field appearance="fill" class="form__field">
     <mat-label>Прізвище</mat-label>
-    <input matInput formControlName="surname">
+    <input matInput formControlName="surname" [readonly]="isReadOnly">
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form__field">
     <mat-label>Ім'я</mat-label>
-    <input matInput formControlName="name">
+    <input matInput formControlName="name" [readonly]="isReadOnly">
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="form__field">
     <mat-label>По батькові</mat-label>
-    <input matInput formControlName="middleName">
+    <input matInput formControlName="middleName" [readonly]="isReadOnly">
   </mat-form-field>
 
   <p class="form__subtitle">Автомобілі</p>
 
-  <app-cars-form [parentForm]="ownerForm" class="form__list"></app-cars-form>
+  <app-cars-form [parentForm]="ownerForm" [isReadOnly]="isReadOnly" class="form__list"></app-cars-form>
 
-  <button mat-raised-button type="submit" [disabled]="!ownerForm.valid" color="primary" class="form__btn">Зберегти</button>
+  <button mat-raised-button type="submit" *ngIf="!isReadOnly" [disabled]="!ownerForm.valid" color="primary" class="form__btn">Зберегти</button>
 </form>

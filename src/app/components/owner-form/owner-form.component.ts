@@ -15,6 +15,8 @@ export class OwnerFormComponent implements OnInit {
   ownerForm: FormGroup;
   ownerId: number;
   isAddOwner: boolean;
+  isReadOnly = false;
+  typeOfForm: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,7 +49,9 @@ export class OwnerFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.ownerId = this.route.snapshot.params.id;
-    this.isAddOwner = !this.ownerId;
+    this.typeOfForm = this.route.snapshot.params.typeOfForm;
+    this.isAddOwner = !this.typeOfForm;
+    let cars = this.ownerForm.get('cars') as FormArray;
     if (!this.isAddOwner) {
       this.iCarOwnersService.getOwnerById(this.ownerId).subscribe((owner: OwnerEntity) => {
         this.ownerForm.patchValue({
@@ -55,7 +59,6 @@ export class OwnerFormComponent implements OnInit {
           name: owner.name,
           middleName: owner.middleName
         });
-        let cars = this.ownerForm.get('cars') as FormArray;
         cars.removeAt(0);
         owner.cars.forEach((own: CarEntity, index: number) => {
           cars.push(this.buildCars());
@@ -67,6 +70,9 @@ export class OwnerFormComponent implements OnInit {
           });
         });
       });
+      if (this.typeOfForm === 'read') {
+        this.isReadOnly = true;
+      }
     }
   }
 

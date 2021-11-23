@@ -1,7 +1,7 @@
 <div class="actions">
   <a routerLink="/form" class="actions__link">Додати</a>
-  <a *ngIf="selectedOwner" [routerLink]="['/form', selectedOwner.id]" class="actions__link">Редагувати</a>
-  <a *ngIf="selectedOwner" [routerLink]="['/form', selectedOwner.id]" class="actions__link">Переглянути</a>
+  <a *ngIf="selectedOwner" [routerLink]="['/form', selectedOwner.id, 'edit']" class="actions__link">Редагувати</a>
+  <a *ngIf="selectedOwner" [routerLink]="['/form', selectedOwner.id, 'read']" class="actions__link">Переглянути</a>
   <button *ngIf="selectedOwner" (click)="deleteOwner()" [disabled]="!selectedOwner" class="actions__link btn">Видалити</button>
 </div>
 
