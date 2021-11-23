@@ -64,9 +64,8 @@ export class OwnerFormComponent implements OnInit {
             producer: own.producer,
             model: own.model,
             yearOfProduction: own.yearOfProduction
-          })
-        })
-        console.log(this.ownerForm.value)
+          });
+        });
       });
     }
   }

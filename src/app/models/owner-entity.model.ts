@@ -1,4 +1,4 @@
-import { CarEntity } from "./car-entity.model";
+import { CarEntity } from './car-entity.model';
 
 export interface OwnerEntity {
   id: number;

@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { switchMap } from "rxjs/operators";
-import { OwnerEntity } from "../models/owner-entity.model";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { OwnerEntity } from '../models/owner-entity.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +19,13 @@ export class ICarOwnersService {
   }
 
   createOwner(owner: OwnerEntity): Observable<OwnerEntity> {
+    owner.id = null;
     return this.http.post<OwnerEntity>('api/owners', owner);
   }
 
   editOwner(owner: OwnerEntity): Observable<OwnerEntity[]> {
-    const id = owner.id;
-    return this.http.put<OwnerEntity>(`api/owners?id=${id}`, owner).pipe(
+    owner.id = parseInt((owner.id).toString());
+    return this.http.put(`api/owners/${owner.id}`, owner).pipe(
       switchMap(() => this.getOwners())
     );
   }
