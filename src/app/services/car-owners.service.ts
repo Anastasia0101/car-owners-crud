@@ -19,7 +19,6 @@ export class ICarOwnersService {
   }
 
   createOwner(owner: OwnerEntity): Observable<OwnerEntity> {
-    owner.id = null;
     return this.http.post<OwnerEntity>('api/owners', owner);
   }
 

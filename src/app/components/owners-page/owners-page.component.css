@@ -1,5 +1,5 @@
 .actions {
-  margin: 15px;
+  margin: 20px;
   font-size: 16px;
 }
 
@@ -18,13 +18,12 @@
 }
 
 .actions__link:hover {
- background-color: #727272;
- transition: 0.2s;
- border-radius: 3px;
- cursor: pointer;
- color: #FFFFFF;
+  background-color: #727272;
+  transition: 0.2s;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #FFFFFF;
 }
-
 
 .demo-table {
   width: 50%;

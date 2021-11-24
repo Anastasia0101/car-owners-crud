@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OwnersTableComponent } from './owners-table.component';
+import { OwnersPageComponent } from './owners-page.component';
 
-describe('OwnersTableComponent', () => {
-  let component: OwnersTableComponent;
-  let fixture: ComponentFixture<OwnersTableComponent>;
+describe('OwnersPageComponent', () => {
+  let component: OwnersPageComponent;
+  let fixture: ComponentFixture<OwnersPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OwnersTableComponent ]
+      declarations: [ OwnersPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OwnersTableComponent);
+    fixture = TestBed.createComponent(OwnersPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

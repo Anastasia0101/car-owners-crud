@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OwnerFormComponent } from './components/owner-form/owner-form.component';
-import { OwnersTableComponent } from './components/owners-table/owners-table.component';
+import { OwnersPageComponent } from './components/owners-page/owners-page.component';
 
 const routes: Routes = [
-  { path: 'home', component: OwnersTableComponent },
+  { path: 'home', component: OwnersPageComponent },
   {
     path: 'form',
     children: [

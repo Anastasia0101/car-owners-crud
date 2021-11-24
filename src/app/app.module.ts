@@ -16,16 +16,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { OwnersTableComponent } from './components/owners-table/owners-table.component';
 import { OwnerFormComponent } from './components/owner-form/owner-form.component';
 import { CarsFormComponent } from './components/cars-form/cars-form.component';
+import { OwnersPageComponent } from './components/owners-page/owners-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OwnersTableComponent,
     OwnerFormComponent,
-    CarsFormComponent
+    CarsFormComponent,
+    OwnersPageComponent
   ],
   imports: [
     BrowserModule,

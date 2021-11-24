@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CarEntity } from 'src/app/models/car-entity.model';
+import { OwnerEntity } from 'src/app/models/owner-entity.model';
 import { ICarOwnersService } from 'src/app/services/car-owners.service';
 
 @Component({
@@ -11,10 +13,10 @@ export class CarsFormComponent {
 
   @Input() parentForm!: FormGroup;
   @Input() isReadOnly!: boolean;
-  isLicensePlateUnique = true;
   currentYear = new Date().getFullYear();
-  lastCarIndex: number;
   isCarGroupValid = true;
+  isCarExist = false;
+  isNumberOfCarMin = true;
   carGroup: AbstractControl;
 
   constructor(
@@ -25,10 +27,10 @@ export class CarsFormComponent {
   addCar(): void {
     this.buildCars();
     this.cars.push(this.carGroup);
-    this.checkNewCarValid();
+    this.checkIsCarGroupValid();
   }
 
-  checkNewCarValid(index?: number): void {
+  checkIsCarGroupValid(index?: number): void {
     if (index >= 0) {
       this.carGroup = this.cars.controls[index];
     }
@@ -36,16 +38,45 @@ export class CarsFormComponent {
       this.isCarGroupValid = false;
       return;
     }
+    this.checkIfCarExist(this.carGroup.value);
+    if (!this.isCarGroupValid) return;
     this.isCarGroupValid = true;
   }
 
   deleteCar(index: number): void {
     this.cars.removeAt(index);
+    if (this.cars.value.length === 1) {
+      this.isNumberOfCarMin = true;
+    }
     this.isCarGroupValid = true;
+    this.isCarExist = false;
+  }
+
+  checkIfCarExist(newCar: CarEntity): void {
+    this.iCarOwnersService.getOwners().subscribe((owners: OwnerEntity[]) => {
+      const foundCar = owners.find((owner: OwnerEntity) => {
+        return owner.cars.some((car: CarEntity) => {
+          return car.licensePlate === newCar.licensePlate &&
+                 car.model === newCar.model &&
+                 car.producer === newCar.producer
+        });
+      });
+      if (foundCar) {
+        this.isCarExist = true;
+        this.isCarGroupValid = false;
+        return;
+      }
+      this.isCarExist = false;
+      this.isCarGroupValid = true;
+    });
   }
 
   get cars(): FormArray {
-    return this.parentForm.get('cars') as FormArray;
+    const cars = this.parentForm.get('cars') as FormArray;
+    if (cars.value.length > 1) {
+      this.isNumberOfCarMin = false;
+    }
+    return cars;
   }
 
   private buildCars(): void {

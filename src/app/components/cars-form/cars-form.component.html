@@ -1,33 +1,34 @@
 <div *ngIf="parentForm" [formGroup]="parentForm" class="form">
   <ul formArrayName="cars">
-    <li [formGroupName]="i" *ngFor="let item of cars.controls; index as i">
+    <li [formGroupName]="index" *ngFor="let item of cars.controls; index as index">
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Номер</mat-label>
-        <input matInput formControlName="licensePlate" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
+        <input matInput formControlName="licensePlate" (change)="checkIsCarGroupValid(index)" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Марка</mat-label>
-        <input matInput formControlName="producer" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
+        <input matInput formControlName="producer" (change)="checkIsCarGroupValid(index)" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Модель</mat-label>
-        <input matInput formControlName="model" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
+        <input matInput formControlName="model" (change)="checkIsCarGroupValid(index)" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="form__field">
         <mat-label>Рік</mat-label>
-        <input matInput formControlName="yearOfProduction" (change)="checkNewCarValid(i)" [readonly]="isReadOnly">
+        <input matInput formControlName="yearOfProduction" (change)="checkIsCarGroupValid(index)" [readonly]="isReadOnly">
       </mat-form-field>
 
-      <button mat-fab color="primary" *ngIf="!isReadOnly" (click)="deleteCar(i)">
+      <button mat-fab color="primary" *ngIf="!isReadOnly" [disabled]="isNumberOfCarMin" (click)="deleteCar(i)">
         <mat-icon>delete</mat-icon>
       </button>
     </li>
-    <p *ngIf="!isLicensePlateUnique">Номер машини не унікальний</p>
+    <p *ngIf="isCarExist" class="form__warning">Ця машина вже додана</p>
   </ul>
-  <button type="button" *ngIf="!isReadOnly" mat-mini-fab color="accent" (click)="addCar()" [disabled]="!isCarGroupValid" class="btn">
+
+  <button type="button" *ngIf="!isReadOnly" mat-mini-fab color="accent" (click)="addCar()" [disabled]="!isCarGroupValid" class="form__btn btn">
     <mat-icon>plus_one</mat-icon>
   </button>
 </div>

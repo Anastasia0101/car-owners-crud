@@ -3,11 +3,11 @@ import { OwnerEntity } from 'src/app/models/owner-entity.model';
 import { ICarOwnersService } from 'src/app/services/car-owners.service';
 
 @Component({
-  selector: 'app-owners-table',
-  templateUrl: './owners-table.component.html',
-  styleUrls: ['./owners-table.component.css']
+  selector: 'app-owners-page',
+  templateUrl: './owners-page.component.html',
+  styleUrls: ['./owners-page.component.css']
 })
-export class OwnersTableComponent implements OnInit {
+export class OwnersPageComponent implements OnInit {
 
   displayedColumns: string[] = ['surname', 'name', 'middleName', 'numberOfCars'];
   owners!: OwnerEntity[];
