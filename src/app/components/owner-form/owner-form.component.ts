@@ -60,13 +60,13 @@ export class OwnerFormComponent implements OnInit {
           middleName: owner.middleName
         });
         cars.removeAt(0);
-        owner.cars.forEach((own: CarEntity, index: number) => {
+        owner.cars.forEach((car: CarEntity, index: number) => {
           cars.push(this.buildCars());
           cars.controls[index].patchValue({
-            licensePlate: own.licensePlate,
-            producer: own.producer,
-            model: own.model,
-            yearOfProduction: own.yearOfProduction
+            licensePlate: car.licensePlate,
+            producer: car.producer,
+            model: car.model,
+            yearOfProduction: car.yearOfProduction
           });
         });
       });
